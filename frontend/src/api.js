@@ -1,17 +1,18 @@
 const API_BASE = "https://ji2911-autosummarizer.hf.space";
 
 export async function analyzeReviews(reviews) {
-    const response = await fetch(`${API_BASE}/api/analyze`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ reviews }),
-    });
+  const resp = await fetch(`${API_BASE}/api/analyze`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ reviews }),
+  });
 
-    if (!response.ok) {
-        throw new Error("Failed to analyze reviews");
-    }
+  if (!resp.ok) {
+    throw new Error("API request failed");
+  }
 
-    return response.json();
+  const data = await resp.json();
+  return data;
 }
