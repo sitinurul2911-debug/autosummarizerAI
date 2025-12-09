@@ -1,47 +1,63 @@
 import { useState } from "react";
-import { summarizeText } from "../api";
+import { analyzeReviews } from "../api";
 
 export default function SummarizerPage() {
     const [input, setInput] = useState("");
-    const [result, setResult] = useState("");
     const [loading, setLoading] = useState(false);
+    const [result, setResult] = useState(null);
 
-    const handleSummarize = async () => {
+    const handleAnalyze = async () => {
         setLoading(true);
-        setResult("‎"); 
+        setResult(null);
 
-        const summary = await summarizeText(input);
-
-        if (summary) setResult(summary);
-        else setResult("Error: gagal mengambil ringkasan.");
+        try {
+            const reviews = input.split("\n").filter(r => r.trim() !== "");
+            const data = await analyzeReviews(reviews);
+            setResult(data);
+        } catch (err) {
+            alert("Error: " + err.message);
+        }
 
         setLoading(false);
     };
 
     return (
-        <div className="max-w-3xl mx-auto mt-10 p-6">
-            <h1 className="text-3xl font-bold mb-4">Auto Summarizer</h1>
+        <div className="max-w-3xl mx-auto p-6">
+            <h1 className="text-3xl font-bold mb-4">Review Summarizer</h1>
 
             <textarea
+                className="w-full border p-3 rounded-lg"
+                rows={8}
+                placeholder="Masukkan review, satu per baris..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Masukkan teks di sini..."
-                className="w-full h-40 p-4 border rounded-lg"
             />
 
             <button
-                onClick={handleSummarize}
-                className="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg"
+                onClick={handleAnalyze}
+                disabled={loading}
+                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg"
             >
-                {loading ? "Memproses..." : "Ringkas"}
+                {loading ? "Processing..." : "Analyze"}
             </button>
 
             {result && (
-                <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-                    <h2 className="text-xl font-semibold mb-2">Hasil ringkasan:</h2>
-                    <p>{result}</p>
+                <div className="mt-8 bg-white shadow rounded-lg p-6">
+                    <h2 className="text-xl font-bold">Summary</h2>
+                    <p>{result.overall_summary}</p>
+
+                    <h2 className="text-xl font-bold mt-4">Key Insights</h2>
+                    <ul className="list-disc ml-5">
+                        {result.key_insights.map((k, i) => (
+                            <li key={i}>{k}</li>
+                        ))}
+                    </ul>
+
+                    <h2 className="text-xl font-bold mt-4">Sentiment</h2>
+                    <p>{result.sentiment} ({result.rating}/5)</p>
                 </div>
             )}
         </div>
     );
 }
+
