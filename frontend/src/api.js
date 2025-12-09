@@ -1,21 +1,17 @@
-export const summarizeText = async (text) => {
-    try {
-        const response = await fetch("https://ji2911-autosummarizer.hf.space/summarize", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ text })
-        });
+const API_BASE = "https://ji2911-autosummarizer.hf.space";
 
-        if (!response.ok) {
-            throw new Error("API error");
-        }
+export async function analyzeReviews(reviews) {
+    const response = await fetch(`${API_BASE}/api/analyze`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ reviews }),
+    });
 
-        const data = await response.json();
-        return data.summary;
-    } catch (err) {
-        console.error("Error:", err);
-        return null;
+    if (!response.ok) {
+        throw new Error("Failed to analyze reviews");
     }
-};
+
+    return response.json();
+}
