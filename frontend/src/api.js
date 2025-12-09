@@ -1,13 +1,16 @@
 import axios from "axios";
 
-const API_URL = "https://ji2911-autosummarizer.hf.space/api";
+const API_BASE = "https://ji2911-autosummarizer.hf.space";
 
 export const analyzeReviews = async (reviews) => {
     try {
-        const response = await axios.post(`${API_URL}/analyze`, { reviews });
-        return response.data;
-    } catch (error) {
-        console.error("API error:", error);
-        return { error: "Gagal menghubungi backend" };
+        const res = await axios.post(`${API_BASE}/api/analyze`, {
+            reviews: reviews,
+        });
+
+        return res.data;
+    } catch (err) {
+        console.error("API ERROR:", err);
+        return { error: true, message: "Backend unreachable" };
     }
 };
