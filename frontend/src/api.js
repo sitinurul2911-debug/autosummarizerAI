@@ -1,32 +1,13 @@
-const BASE_URL = "https://ji2911-autosummarizer.hf.space";
+import axios from "axios";
 
-export async function checkHealth() {
-  try {
-    const res = await fetch(`${BASE_URL}/api/health`);
-    return await res.json();
-  } catch (err) {
-    console.error("Health check failed:", err);
-    return { status: "error", message: "Unable to reach backend" };
-  }
-}
+const API_URL = "https://ji2911-autosummarizer.hf.space/api";
 
-export async function analyzeReviews(reviews) {
-  try {
-    const res = await fetch(`${BASE_URL}/api/analyze`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ reviews }),
-    });
-
-    if (!res.ok) {
-      throw new Error("API returned an error");
+export const analyzeReviews = async (reviews) => {
+    try {
+        const response = await axios.post(`${API_URL}/analyze`, { reviews });
+        return response.data;
+    } catch (error) {
+        console.error("API error:", error);
+        return { error: "Gagal menghubungi backend" };
     }
-
-    return await res.json();
-  } catch (err) {
-    console.error("Analyze error:", err);
-    return { error: "Backend tidak dapat dihubungi" };
-  }
-}
+};
