@@ -1,16 +1,21 @@
-import axios from "axios";
-
-const API_BASE = "https://ji2911-autosummarizer.hf.space";
-
-export const analyzeReviews = async (reviews) => {
+export const summarizeText = async (text) => {
     try {
-        const res = await axios.post(`${API_BASE}/api/analyze`, {
-            reviews: reviews,
+        const response = await fetch("https://ji2911-autosummarizer.hf.space/summarize", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text })
         });
 
-        return res.data;
+        if (!response.ok) {
+            throw new Error("API error");
+        }
+
+        const data = await response.json();
+        return data.summary;
     } catch (err) {
-        console.error("API ERROR:", err);
-        return { error: true, message: "Backend unreachable" };
+        console.error("Error:", err);
+        return null;
     }
 };
