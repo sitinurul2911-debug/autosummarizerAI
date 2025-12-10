@@ -3,6 +3,9 @@ import Heading from "../components/Heading";
 import { useState } from "react";
 import Button from "../components/Button";
 
+// Import API function
+import { summarizeText } from "../api"; // Pastikan path benar
+
 const Summarizer = () => {
     const [reviews, setReviews] = useState("");
     const [summary, setSummary] = useState(null);
@@ -16,20 +19,39 @@ const Summarizer = () => {
 
         setIsLoading(true);
         
-        setTimeout(() => {
+        try {
+            // Panggil API sebenarnya
+            const data = await summarizeText(reviews);
+            
+            // Map response dari API ke format yang diharapkan component
             setSummary({
-                overallSummary: "The reviews indicate a generally positive sentiment with customers praising the product quality and customer service. However, there are some concerns about delivery times and pricing.",
-                sentiment: "Positive",
-                overallScore: "4.2/5.0",
-                keyInsights: [
-                    "Excellent product quality mentioned in 78% of reviews",
-                    "Customer service highly rated",
-                    "Delivery times need improvement",
-                    "Pricing considered slightly high by some users"
+                overallSummary: data.summary || data.overall_summary || "No summary available",
+                sentiment: data.sentiment || "Neutral",
+                overallScore: data.rating ? `${data.rating}/5.0` : "N/A",
+                keyInsights: data.key_insights || [
+                    "No insights generated",
+                    "Please check your input text"
                 ]
             });
-            setIsLoading(false);
-        }, 2000);
+            
+        } catch (error) {
+            console.error("API Error:", error);
+            alert("Failed to generate summary. Please try again.");
+            
+            // Fallback dummy hanya jika API error
+            setSummary({
+                overallSummary: "Error connecting to AI service. Please check your connection.",
+                sentiment: "Neutral",
+                overallScore: "N/A",
+                keyInsights: [
+                    "API connection failed",
+                    "Check if backend is running",
+                    "Try again later"
+                ]
+            });
+        }
+        
+        setIsLoading(false);
     };
 
     const handleReset = () => {
@@ -122,7 +144,7 @@ const Summarizer = () => {
                                         </div>
                                         <p className="body-2 text-n-3">Sentiment</p>
                                     </div>
-                                    <p className="text-3xl font-bold text-[#88E5BE]">{summary.sentiment}</p>
+                                    <p className="text-3xl font-bold text-[#88E5BE] capitalize">{summary.sentiment.toLowerCase()}</p>
                                 </div>
                             </div>
 
