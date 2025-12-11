@@ -53,13 +53,6 @@ export { default as benefitIcon3 } from './benefits/icon-3.svg';
 export { default as benefitIcon4 } from './benefits/icon-4.svg';
 export { default as benefitImage2 } from './benefits/image-2.png';
 
-// Socials Section
-export { default as discordBlack } from './socials/discord.svg';
-export { default as facebook } from './socials/facebook.svg';
-export { default as instagram } from './socials/instagram.svg';
-export { default as telegram } from './socials/telegram.svg';
-export { default as twitter } from './socials/twitter.svg';
-
 // General Imports
 export { default as openai } from './openai.svg';
 export { default as check } from './check.svg';
@@ -90,4 +83,5 @@ export { default as dev3 } from './Reza.jpg';
 export { default as dev4 } from './generated_images/Male_developer_portrait_1_e57c4aa0.png';
 export { default as dev5 } from './Moya.jpg';
 export { default as dev6 } from './Jiah.jpg';
+
 
