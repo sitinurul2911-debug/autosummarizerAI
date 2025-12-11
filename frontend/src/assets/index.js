@@ -84,9 +84,10 @@ export { default as loading } from './loading.png';
 export { default as background } from './background.jpg';
 
 // Developer photos
-export { default as dev1 } from './generated_images/Female_developer_portrait_1_7739cca4.png';
-export { default as dev2 } from './generated_images/Female_developer_portrait_2_131cb436.png';
-export { default as dev3 } from './generated_images/Female_developer_portrait_3_f30d202e.png';
+export { default as dev1 } from './Ilona.jpg';
+export { default as dev2 } from './Lidya.jpg';
+export { default as dev3 } from './Reza.jpg';
 export { default as dev4 } from './generated_images/Male_developer_portrait_1_e57c4aa0.png';
-export { default as dev5 } from './generated_images/Male_developer_portrait_2_5e1360ea.png';
-export { default as dev6 } from './generated_images/Male_developer_portrait_3_fb741293.png';
+export { default as dev5 } from './Moya.jpg';
+export { default as dev6 } from './Jiah.jpg';
+
