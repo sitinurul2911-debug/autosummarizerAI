@@ -3,7 +3,6 @@ import { HashLink } from "react-router-hash-link";
 import { disablePageScroll, enablePageScroll } from "scroll-lock";
 
 import { background, openai } from "../assets";
-import Button from "./Button";
 import MenuSvg from "../assets/svg/MenuSvg";
 import { useState } from "react";
 
@@ -27,7 +26,7 @@ const navigation = [
 
 const Header = () => {
     const location = useLocation();
-    const navigate = useNavigate(); // ← TAMBAHKAN INI
+    const navigate = useNavigate();
     const [openNavigation, setOpenNavigation] = useState(false);
 
     const toggleNavigation = () => {
@@ -46,7 +45,6 @@ const Header = () => {
         setOpenNavigation(false);
     };
 
-    // ← TAMBAHKAN FUNCTION INI
     const handleLogoClick = (e) => {
         e.preventDefault();
         navigate("/");
@@ -65,7 +63,7 @@ const Header = () => {
             ${openNavigation ? "bg-n-8" : "bg-n-8/90 backdrop-blur-sm"}`}
         >
             <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
-                {/* ← GANTI LOGO JADI INI */}
+
                 <a 
                     href="/#home" 
                     onClick={handleLogoClick}
@@ -81,7 +79,6 @@ const Header = () => {
                     lg:static lg:flex lg:mx-auto lg:bg-transparent`}
                 >
                     <div className="relative z-2 flex flex-col items-center justify-center m-auto lg:flex-row">
-
                         {navigation.map((item) =>
                             item.url.includes("#") ? (
                                 <HashLink
@@ -112,9 +109,9 @@ const Header = () => {
                                 </Link>
                             )
                         )}
-
                     </div>
 
+                    {/* Background mobile */}
                     <div className="absolute inset-0 pointer-events-none lg:hidden">
                         <div className="absolute inset-0 opacity-[.03]">
                             <img
@@ -139,15 +136,10 @@ const Header = () => {
                         <div className="absolute top-[26.8rem] left-12 w-6 h-6 bg-gradient-to-b from-[#88E5BE] to-[#1A1A32] rounded-full"></div>
                     </div>
                 </nav>
-                        <a href="#signup" className="button hidden mr-8 text-white/50 transition-colors hover:text-white lg:block">
-                    New account
-                </a>
-                <Button className="hidden lg:flex" href="#login">
-                    Sign in
-                </Button>
-                <Button className="ml-auto lg:hidden" onClick={toggleNavigation}>
+
+                <button className="ml-auto lg:hidden" onClick={toggleNavigation}>
                     <MenuSvg openNavigation={openNavigation} />
-                </Button>
+                </button>
             </div>
         </div>
     );
