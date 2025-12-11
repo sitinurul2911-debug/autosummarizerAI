@@ -77,11 +77,12 @@ export { default as loading } from './loading.png';
 export { default as background } from './background.jpg';
 
 // Developer photos
-export { default as dev1 } from './Ilona.jpg';
-export { default as dev2 } from './Lidya.jpg';
-export { default as dev3 } from './Reza.jpg';
+export { default as dev1 } from './generated_images/Ilona.jpg';
+export { default as dev2 } from './generated_images/Lidya.jpg';
+export { default as dev3 } from './generated_images/Reza.jpg';
 export { default as dev4 } from './generated_images/Male_developer_portrait_1_e57c4aa0.png';
-export { default as dev5 } from './Moya.jpg';
-export { default as dev6 } from './Jiah.jpg';
+export { default as dev5 } from './generated_images/Moya.jpg';
+export { default as dev6 } from './generated_images/Jiah.jpg';
+
 
 
