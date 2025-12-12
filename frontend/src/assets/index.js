@@ -54,7 +54,7 @@ export { default as benefitIcon4 } from './benefits/icon-4.svg';
 export { default as benefitImage2 } from './benefits/image-2.png';
 
 // General Imports
-export { default as openai } from './openai.svg';
+export { default as openai } from './Untitled_Artwork.png';
 export { default as check } from './check.svg';
 export { default as check2 } from './check-02.svg';
 export { default as loading1 } from './loading-01.svg';
@@ -83,6 +83,7 @@ export { default as dev3 } from './generated_images/Reza.jpg';
 export { default as dev4 } from './generated_images/Luhur.jpg';
 export { default as dev5 } from './generated_images/Moya.jpg';
 export { default as dev6 } from './generated_images/Jiah.jpg';
+
 
 
 
