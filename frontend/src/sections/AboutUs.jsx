@@ -70,7 +70,7 @@ const AboutUs = () => {
                 <Heading 
                     className="md:max-w-md lg:max-w-2xl" 
                     title="About Us" 
-                    text="Behind reviewAI"
+                    text="Behind Makan Bang AI"
                 />
 
                 <div className="relative mt-16 px-16">
@@ -155,5 +155,6 @@ const AboutUs = () => {
         </Section>
     );
 };
+
 
 export default AboutUs;
