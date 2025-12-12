@@ -63,7 +63,7 @@ export { default as play } from './play.svg';
 export { default as gradient } from './gradient.png';
 export { default as smallSphere } from './4-small.png';
 export { default as grid } from './grid.png';
-export { default as yourlogo } from './yourlogo.svg';
+export { default as yourlogo } from './Untitled_Artwork.png';
 export { default as homeSmile } from './home-smile.svg';
 export { default as file02 } from './file-02.svg';
 export { default as searchMd } from './search-md.svg';
@@ -83,6 +83,7 @@ export { default as dev3 } from './generated_images/Reza.jpg';
 export { default as dev4 } from './generated_images/Luhur.jpg';
 export { default as dev5 } from './generated_images/Moya.jpg';
 export { default as dev6 } from './generated_images/Jiah.jpg';
+
 
 
 
